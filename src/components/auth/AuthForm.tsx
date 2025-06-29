@@ -1,5 +1,4 @@
 'use client';
-
 import {
   Card,
   CardContent,
@@ -24,6 +23,7 @@ import { useSigninMutation, useSignupMutation } from '@/apis/auth/queries';
 import Link from 'next/link';
 import { useState } from 'react';
 import Image from 'next/image';
+import GoogleAuthSection from './GoogleAuthSection';
 
 type FormData = {
   name?: string;
@@ -48,14 +48,14 @@ const AuthForm = ({ isRegister }: { isRegister: boolean }) => {
   const onSubmit = (data: FormData) => {
     const action = isRegister ? signup : signin;
     console.log(data)
-    // action(data, {
-    //   onSuccess: () => {
-    //     alert(`${isRegister ? 'Registered' : 'Logged in'} successfully!`);
-    //   },
-    //   onError: () => {
-    //     alert('Something went wrong!');
-    //   },
-    // });
+    action(data, {
+      onSuccess: () => {
+        alert(`${isRegister ? 'Registered' : 'Logged in'} successfully!`);
+      },
+      onError: () => {
+        alert('Something went wrong!');
+      },
+    });
   };
 
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -182,19 +182,20 @@ const AuthForm = ({ isRegister }: { isRegister: boolean }) => {
             >
               {isRegister ? 'Register' : 'Login'}
             </Button>
-
+            <GoogleAuthSection />
             <p className="text-center text-sm mt-4 text-muted-foreground">
               {isRegister ? (
                 <>
                   Already have an account?{' '}
-                  <Link href="/signin" className="text-blue-600 hover:underline font-medium">
+                  <Link href="/signin" className="text-blue-600 cursor-pointer hover:underline font-medium">
                     Login
                   </Link>
+                  
                 </>
               ) : (
                 <>
                   Don’t have an account?{' '}
-                  <Link href="/signup" className="text-blue-600 hover:underline font-medium">
+                  <Link href="/signup" className="text-blue-600 cursor-pointer hover:underline font-medium">
                     Register
                   </Link>
                 </>

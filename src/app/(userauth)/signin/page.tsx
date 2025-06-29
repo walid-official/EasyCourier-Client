@@ -1,5 +1,6 @@
-'use client';
+// 'use client';
 import AuthForm from '@/components/auth/AuthForm';
+
 // import AuthForm from '@/app/components/AuthForm';
 import React from 'react';
 

@@ -30,4 +30,3 @@ export const storeToken = (token: string) => {
   export const isAuthenticated = (): boolean => {
     return !!getToken();
   };
-  
